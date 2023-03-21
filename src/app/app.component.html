@@ -1,0 +1,27 @@
+<div class="text-black bg-fuchsia-50 h-full">
+  <nav class="flex justify-between p-4 text-white bg-gradient-to-r from-white to-purple-600">
+    <div class="pl-4">
+        <a routerLink="events"><img src="\assets\headlogo.png" width="300" ></a>
+    </div>
+
+    <div class="text-2xl flex justify-center" >
+      <div *ngIf="isAdmin()" class="flex justify-center">
+        <button routerLink="adduser"  class="border-0 rounded-full bg-slate-700 w-36 hover:bg-slate-800">Add User</button>
+      </div>
+      <div *ngIf="isAdmin() || isDeputy()" class="flex justify-center">
+        <button routerLink="staffreport"  class="border-0 rounded-full bg-slate-700 w-36 hover:bg-slate-800">Staff Report</button>
+      </div>
+      <div class="pl-2 flex justify-center">
+        <ng-container *ngIf="!isAuthenticated()" >
+          <button routerLink="" class="border-0 rounded-full bg-slate-700 w-32 hover:bg-slate-800"> Login</button>
+        </ng-container>
+        <ng-container *ngIf="isAuthenticated()" >
+            <button class="border-0 rounded-full bg-slate-700 w-32 hover:bg-slate-800" (click)="logout()">Logout</button>
+        </ng-container>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+</div>

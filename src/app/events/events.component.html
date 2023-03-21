@@ -1,0 +1,109 @@
+
+<div class="bg-fusia-50 w-full">
+  <div class="mt-5">
+    <div class="flex flex-col justify-center items-center mx-3">
+      <div class="flex flex-row justify-end w-full">
+        <div class="w-full max-w-6xl border-solid border-gray-400 border-1 rounded bg-zinc-300 p-6">
+          <p class="content-center">Edit Exam Details</p><br>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Title
+              </label>
+              <input
+                class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type="text" [(ngModel)]="newEvent.title" placeholder="Enter Title">
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Date
+              </label>
+              <input
+                class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type="date" [(ngModel)]="newEvent.date" placeholder="Albuquerque">
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Session
+              </label>
+              <div class="relative">
+                <select
+                  class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state" [(ngModel)]="newEvent.session">
+                  <option>FN</option>
+                  <option>AN</option>
+                </select>
+                <div class="pointer-newEvents-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="w-full px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Classroooms Required
+            </label>
+            <input
+              class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="number" min="0" max="100" [(ngModel)]="newEvent.class_count" placeholder="Enter Classrooms count">
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                Classrooms
+              </label>
+              <app-classroom  (emitClassroomList)="hand($event)" [required_count]="newEvent.class_count"></app-classroom>
+            </div>
+          </div>
+
+          <div class="flex flex-row justify-center">
+            <button class="transform bg-purple-500 transition duration-100 hover:scale-105 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded mr-6 w-2/5"
+              (click)="addEvent()">
+              <ng-container *ngIf="!isLoading()">Add Exam</ng-container>
+              <ng-container *ngIf="isLoading()">Loading...</ng-container>
+            </button>
+          </div>
+          <div>{{addMessage}}</div>
+        </div>
+        <div class="bg-zinc-300 w-2/6 ml-6 text-3xl rounded">
+          <div class="text-gray-50 bg-blue-300 p-2 border rounded m-2">
+            <label>Total Classrooms :</label>
+            {{total_count}}
+          </div>
+          <div class="text-gray-50 bg-green-300 p-2 border rounded m-2">
+            <label>Selected Classrooms :</label>
+            {{selected_count}}
+          </div>
+          <div class="text-gray-50 bg-fuchsia-300 p-2 border rounded m-2">
+            <label>Remaining Classrooms :</label>
+            {{total_count-selected_count}}
+          </div>
+          <br>
+          <div class="border rounded bg-violet-300 m-2">
+            <label class="m-1" [hidden]="!block_count[0]">Block Count :</label>
+            <div *ngFor="let block of block_count;let i=index" class="border-solid rounded m-2 bg-violet-300 items-center max-w-5xl">
+              <p class="text-gray-600 border rounded text-center">
+                {{block_names[i]}} : {{block}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <div class="border-solid border rounded grid grid-cols-3 gap-4 justify-between mx-10 p-5 bg-zinc-300">
+    <div *ngIf="!events.length" class="font-semibold text-lg tracking-wider text-center text-gray-900 w-full">NO EXAMS SCEDULED</div>
+    <div class="border-solid rounded m-2 transform bg-zinc-200 transition duration-500 hover:scale-110 hover:bg-zinc-50 items-center" *ngFor="let singleEvent of events">
+      <app-event (eventEmitter)="handleChildReturn($event)" [event]="singleEvent"></app-event>
+    </div>
+  </div>
+  <div class="h-20 bg-slate-800 mt-10">
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<p>staffreport works!</p>
+<div class="border-solid border rounded grid grid-cols-1 gap-1 justify-between m-10 p-5 bg-zinc-400" >
+  <div >
+    <label>
+      Date
+    </label>
+    <input type="date" [(ngModel)]="date"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" >
+    <button class="transform bg-purple-500 transition duration-100 hover:scale-105 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded mr-6 w-2/5"
+           (click)="fetch()"  >Fetch</button>
+  </div>
+  <div *ngFor="let staff of report.data" class="border-solid rounded m-2 bg-zinc-50 items-center max-w-5xl">
+    {{staff}}
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="p-2 flex flex-row justify-between">
+  <div class="flex flex-col text-xl">
+    <label>Email   :{{user.email}}</label>
+    <label>Privilege    :{{user.privilege}}</label>
+  </div>
+  <div class="flex flex-row w-52 justify-end">
+    <button class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mr-6 w-full content-center" (click)="deleteUser()">Delete</button>
+  </div>
+</div>

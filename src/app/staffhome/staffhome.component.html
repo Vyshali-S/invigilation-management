@@ -1,0 +1,49 @@
+
+<div class="flex flex-col m-6">
+  <div class="flex flex-row justify-center">
+    <table class="border-collapse rounded border border-slate-500 bg-slate-300 text-xl">
+      <tr>
+        <td class="border border-slate-700 w-56 p-2">Faculty Id</td>
+        <td class="border border-slate-700 w-64 p-2">{{staffDetails.faculty_id}}</td>
+      </tr>
+      <tr>
+        <td class="border border-slate-700 p-2">Name</td>
+        <td class="border border-slate-700 p-2">{{staffDetails.name}}</td>
+      </tr>
+      <tr>
+        <td class="border border-slate-700 p-2">Department</td>
+        <td class="border border-slate-700 p-2">{{staffDetails.dept}}</td>
+      </tr>
+      <tr>
+        <td class="border border-slate-700 p-2">Mail Id</td>
+        <td class="border border-slate-700 p-2">{{staffDetails.email}}</td>
+      </tr>
+      <tr>
+        <td class="border border-slate-700 p-2">AP Level</td>
+        <td class="border border-slate-700 p-2">{{staffDetails.aplevel}}</td>
+      </tr>
+      <tr>
+        <td class="border border-slate-700 p-2">Duties Completed</td>
+        <td class="border border-slate-700 p-2">{{staffDetails.dutycount_done}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="mt-10 border rounded bg-slate-300 p-5">
+    <label class="text-2xl ml-4">
+      Upcoming Duties :
+    </label>
+    <table class="border-collapse rounded border border-slate-500 bg-slate-300 text-xl">
+      <tr >
+        <th class="border border-slate-700 w-56 p-2">Date</th>
+        <th class="border border-slate-700 w-64 p-2">Session</th>
+      </tr>
+      <tr *ngFor="let i of duties">
+        <td class="border border-slate-700 p-2">{{i[0][0]}}</td>
+        <td class="border border-slate-700 p-2">{{i[0][1]}}</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div>

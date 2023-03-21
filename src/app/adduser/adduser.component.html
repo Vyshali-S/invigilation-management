@@ -1,0 +1,38 @@
+<div class="m-5">
+  <div class="flex flex-col justify-center items-center">
+    <div class="w-full max-w-4xl border-solid border-gray-400 border-1 rounded bg-zinc-400 p-6">
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+            Email
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+           type="text" placeholder="Enter Email" [(ngModel)]="newUser.email">
+        </div>
+      </div>
+      <div class="relative">
+        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+         id="grid-state" [(ngModel)]="newUser.privilege">
+          <option>user</option>
+          <option>admin</option>
+        </select>
+        <div class="pointer-newEvents-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+        </div>
+      </div>
+      <br>
+      <div class="flex flex-row justify-center">
+        <button class="transform bg-purple-500 transition duration-100 hover:scale-105 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded mr-6 w-2/5"
+        (click)="addUser()">
+          <ng-container  >Add Incharge</ng-container>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="border-solid border rounded grid grid-cols-1 gap-1 justify-between m-10 p-5 bg-zinc-400" >
+    <div *ngFor="let singleUser of users" class="border-solid rounded m-2 bg-zinc-50 items-center max-w-5xl">
+      <app-user (userEmitter)="deleteUser($event)" [user]="singleUser"></app-user>
+    </div>
+  </div>
+
+</div>

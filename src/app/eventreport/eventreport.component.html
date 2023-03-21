@@ -1,0 +1,22 @@
+<p>eventreport works!</p>
+
+{{event.title}}
+{{event.date}}
+{{event.session}}
+{{event.classrooms}}
+
+<table class="border-collapse rounded border border-slate-500 bg-slate-300 text-xl">
+  <tr>
+    <th class="border border-slate-700 w-56 p-2">Classroom</th>
+    <th class="border border-slate-700 w-64 p-2">staff</th>
+    <th class="border border-slate-700 w-64 p-2">ispresent</th>
+  </tr>
+  <tr>
+    <td class="border border-slate-700 p-2"></td>
+    <td class="border border-slate-700 p-2"></td>
+  </tr>
+</table>
+<div *ngFor="let i of event.classrooms">
+  {{i}}
+
+</div>
